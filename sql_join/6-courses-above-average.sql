@@ -8,7 +8,7 @@ HAVING COUNT(enrollments.student_id) > (
     FROM (
         SELECT COUNT(*) AS enrollment_count
         FROM enrollments
-        GROUP BY courses.id
+        GROUP BY course_id
     ) AS course_counts
 )
 ORDER BY course_title ASC;
