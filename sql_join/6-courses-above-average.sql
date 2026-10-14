@@ -6,11 +6,9 @@ GROUP BY courses.id, courses.title
 HAVING COUNT(enrollments.student_id) > (
     SELECT AVG(enrollment_count)
     FROM (
-        SELECT COUNT(enrollments.student_id) AS enrollment_count
-        FROM courses
-        LEFT JOIN enrollments
-        ON courses.id = enrollments.course_id
+        SELECT COUNT(*) AS enrollment_count
+        FROM enrollments
         GROUP BY courses.id
-    )
+    ) AS course_counts
 )
 ORDER BY course_title ASC;
